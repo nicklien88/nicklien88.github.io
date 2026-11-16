@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lien Chiang Cheng — Backend Engineer</title>
+<meta name="description" content="Backend engineer with 6+ years of experience building Python/Django systems: REST APIs, scheduled data processing, and performance optimization.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fafaf9;
+    --surface: #ffffff;
+    --text: #1c1917;
+    --muted: #57534e;
+    --subtle: #a8a29e;
+    --border: #e7e5e4;
+    --accent: #1f4e79;
+    --accent-soft: #e8eff6;
+    --good: #15803d;
+    --shadow: 0 1px 2px rgba(0,0,0,.04), 0 4px 16px rgba(0,0,0,.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --surface: #171a21;
+      --text: #ececec;
+      --muted: #a3a3a3;
+      --subtle: #6b7280;
+      --border: #2a2f3a;
+      --accent: #7fb2e5;
+      --accent-soft: #1a2633;
+      --good: #4ade80;
+      --shadow: none;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0; background: var(--bg); color: var(--text);
+    font-family: Inter, -apple-system, "Segoe UI", Helvetica, Arial, sans-serif;
+    font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--accent); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+  .wrap { max-width: 920px; margin: 0 auto; padding: 0 20px; }
+
+  /* nav */
+  nav {
+    position: sticky; top: 0; z-index: 10;
+    background: color-mix(in srgb, var(--bg) 85%, transparent);
+    backdrop-filter: blur(8px); border-bottom: 1px solid var(--border);
+  }
+  nav .wrap { display: flex; justify-content: space-between; align-items: center; height: 56px; }
+  nav .brand { font-weight: 700; color: var(--text); }
+  nav ul { display: flex; gap: 22px; list-style: none; margin: 0; padding: 0; font-size: 14px; }
+  nav ul a { color: var(--muted); }
+  nav ul a:hover { color: var(--text); text-decoration: none; }
+
+  /* hero */
+  .hero { padding: 72px 0 56px; }
+  .status {
+    display: inline-flex; align-items: center; gap: 8px; font-size: 13px; color: var(--muted);
+    border: 1px solid var(--border); border-radius: 999px; padding: 4px 12px; background: var(--surface);
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--good); }
+  .hero h1 { font-size: clamp(34px, 6vw, 52px); line-height: 1.1; margin: 18px 0 10px; letter-spacing: -0.02em; }
+  .hero h1 .zh { font-weight: 500; color: var(--subtle); font-size: .6em; margin-left: 6px; white-space: nowrap; display: inline-block; }
+  .hero .role { font-size: clamp(18px, 2.6vw, 22px); color: var(--accent); font-weight: 600; margin: 0 0 16px; }
+  .hero p.lead { font-size: 18px; color: var(--muted); max-width: 640px; margin: 0 0 28px; }
+  .btns { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px; padding: 10px 18px; border-radius: 8px;
+    font-weight: 600; font-size: 15px; border: 1px solid var(--border); color: var(--text); background: var(--surface);
+  }
+  .btn:hover { text-decoration: none; border-color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  @media (prefers-color-scheme: dark) { .btn.primary { color: #0f1115; } }
+  .btn.primary:hover { opacity: .9; }
+
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 44px; }
+  .stat { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; box-shadow: var(--shadow); }
+  .stat b { display: block; font-size: 26px; letter-spacing: -0.02em; }
+  .stat span { font-size: 13px; color: var(--muted); }
+
+  /* sections */
+  section { padding: 56px 0; border-top: 1px solid var(--border); }
+  h2 { font-size: 13px; letter-spacing: .12em; text-transform: uppercase; color: var(--accent); margin: 0 0 8px; }
+  .section-title { font-size: 28px; margin: 0 0 28px; letter-spacing: -0.01em; }
+
+  /* project cards */
+  .projects { display: grid; gap: 20px; }
+  .card {
+    background: var(--surface); border: 1px solid var(--border); border-radius: 12px;
+    padding: 24px; box-shadow: var(--shadow);
+  }
+  .card h3 { margin: 0 0 4px; font-size: 20px; }
+  .card .ctx { font-size: 14px; color: var(--subtle); margin-bottom: 14px; }
+  .card dl { display: grid; grid-template-columns: 92px 1fr; gap: 6px 14px; margin: 0 0 16px; }
+  .card dt { font-size: 13px; font-weight: 600; color: var(--muted); padding-top: 2px; }
+  .card dd { margin: 0; }
+  .impact { color: var(--good); font-weight: 600; }
+  .tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .tag {
+    font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 12px;
+    background: var(--accent-soft); color: var(--accent); padding: 3px 8px; border-radius: 5px;
+  }
+  .card.featured { border-color: color-mix(in srgb, var(--accent) 40%, var(--border)); }
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* architecture diagram */
+  .arch { margin: 6px 0 18px; padding: 16px; border-radius: 10px; background: var(--bg); border: 1px dashed var(--border); }
+  .arch-title { font-size: 12px; color: var(--subtle); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 10px; }
+  .flow { display: flex; align-items: stretch; gap: 8px; flex-wrap: wrap; }
+  .node {
+    flex: 1 1 120px; background: var(--surface); border: 1px solid var(--border); border-radius: 8px;
+    padding: 10px; font-size: 13px; text-align: center; line-height: 1.35;
+  }
+  .node b { display: block; font-size: 13px; }
+  .node small { color: var(--muted); font-size: 11.5px; }
+  .node.hot { border-color: var(--accent); background: var(--accent-soft); }
+  .arrow { align-self: center; color: var(--subtle); font-size: 18px; }
+
+  /* experience timeline */
+  .timeline { list-style: none; margin: 0; padding: 0; }
+  .timeline li { display: grid; grid-template-columns: 170px 1fr; gap: 20px; padding: 18px 0; border-bottom: 1px solid var(--border); }
+  .timeline li:last-child { border-bottom: 0; }
+  .timeline .when { color: var(--muted); font-size: 14px; }
+  .timeline h3 { margin: 0; font-size: 17px; }
+  .timeline .co { color: var(--muted); font-size: 15px; }
+  .timeline p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+
+  /* skills */
+  .skills { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .skill-group { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 18px; }
+  .skill-group h3 { margin: 0 0 10px; font-size: 15px; }
+
+  /* contact */
+  .contact { text-align: center; padding-bottom: 80px; }
+  .contact p { color: var(--muted); max-width: 560px; margin: 0 auto 24px; }
+  .contact .btns { justify-content: center; }
+  footer { text-align: center; font-size: 13px; color: var(--subtle); padding: 24px 0 40px; }
+
+  .hidden { display: none !important; }
+
+  @media (max-width: 720px) {
+    nav ul { display: none; }
+    .hero { padding: 48px 0 40px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .grid-2, .skills { grid-template-columns: 1fr; }
+    .card { padding: 18px; }
+    .card dl { grid-template-columns: 1fr; gap: 2px; }
+    .card dd { margin-bottom: 8px; }
+    .timeline li { grid-template-columns: 1fr; gap: 4px; }
+    .arrow { transform: rotate(90deg); flex-basis: 100%; text-align: center; }
+    .node { flex-basis: 100%; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a class="brand" href="#top">Lien Chiang Cheng</a>
+    <ul>
+      <li><a href="#work">Work</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="top">
+  <div class="wrap">
+
+    <header class="hero">
+      <span class="status"><span class="dot"></span>Available for remote part-time &amp; contract work · UTC+8</span>
+      <h1>Lien Chiang Cheng<span class="zh">連將成</span></h1>
+      <p class="role">Backend Engineer · Python &amp; Django</p>
+      <p class="lead">I build reliable REST APIs and data-heavy backend systems, and I make them fast. 6+ years shipping monitoring platforms, meteorological data services, and business systems end to end.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:nick88068@gmail.com">Email me</a>
+        <a class="btn" href="Resume_Lien_Chiang_Cheng.pdf" target="_blank" rel="noopener">Download résumé (PDF)</a>
+        <a class="btn" href="https://linkedin.com/in/nick-lien" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="btn hidden" id="github-btn" href="#" target="_blank" rel="noopener">GitHub</a>
+      </div>
+
+      <div class="stats">
+        <div class="stat"><b>6+ yrs</b><span>Backend development</span></div>
+        <div class="stat"><b>6s → 1s</b><span>API response time cut</span></div>
+        <div class="stat"><b>300+</b><span>Hosts monitored</span></div>
+        <div class="stat"><b>200K+</b><span>Records processed daily</span></div>
+      </div>
+    </header>
+
+    <section id="work">
+      <h2>Selected work</h2>
+      <p class="section-title">Projects I've built</p>
+
+      <div class="projects">
+
+        <article class="card featured">
+          <h3>Server Monitoring Platform</h3>
+          <div class="ctx">Data-center monitoring dashboard · 300+ hosts · 2023 – present</div>
+
+          <div class="arch" aria-label="Architecture diagram">
+            <div class="arch-title">How it works</div>
+            <div class="flow">
+              <div class="node"><b>300+ hosts</b><small>CPU · memory · disk</small></div>
+              <div class="arrow">→</div>
+              <div class="node"><b>ETL job</b><small>Django command<br>crontab, every minute</small></div>
+              <div class="arrow">→</div>
+              <div class="node hot"><b>Redis + DB</b><small>live metrics in cache<br>tables in database</small></div>
+              <div class="arrow">→</div>
+              <div class="node"><b>DRF API</b><small>REST endpoints</small></div>
+              <div class="arrow">→</div>
+              <div class="node"><b>Vue.js dashboard</b><small>live-updating tables</small></div>
+            </div>
+          </div>
+
+          <dl>
+            <dt>Problem</dt>
+            <dd>The live dashboard queried the database directly for real-time metrics, and API responses took around 6 seconds.</dd>
+            <dt>Solution</dt>
+            <dd>Built a per-minute ETL job that turns 200K+ raw records a day into dashboard-ready tables, and moved real-time metrics into a Redis cache served through Django REST Framework APIs.</dd>
+            <dt>Impact</dt>
+            <dd class="impact">API response time dropped from 6s to 1s (83% faster).</dd>
+          </dl>
+          <div class="tags"><span class="tag">Django REST Framework</span><span class="tag">Redis</span><span class="tag">crontab</span><span class="tag">Vue.js</span><span class="tag">MySQL</span></div>
+        </article>
+
+        <div class="grid-2">
+          <article class="card">
+            <h3>Weather Observation Data Service</h3>
+            <div class="ctx">Government meteorological agency</div>
+            <dl>
+              <dt>Built</dt>
+              <dd>Observation data APIs, backed by scheduled ETL jobs that extract, clean, and load raw observation data into a dedicated database.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Django</span><span class="tag">REST API</span><span class="tag">ETL</span></div>
+          </article>
+
+          <article class="card">
+            <h3>Earthquake Visualization Services</h3>
+            <div class="ctx">Government meteorological agency</div>
+            <dl>
+              <dt>Built</dt>
+              <dd>Backend services that generate seismic intensity maps, waveform plots, KMZ (Google Earth) files, and text reports for earthquake events.</dd>
+            </dl>
+            <div class="tags"><span class="tag">NumPy</span><span class="tag">Matplotlib</span><span class="tag">KMZ</span></div>
+          </article>
+
+          <article class="card">
+            <h3>SaaS Order Management System</h3>
+            <div class="ctx">Online sales platform · 2022</div>
+            <dl>
+              <dt>Built</dt>
+              <dd>RESTful APIs and frontend, 4 payment gateways and 5 social media integrations, plus white-label deployments for overseas partners.</dd>
+              <dt>Impact</dt>
+              <dd class="impact">Redis job queue cut response time by ~30%.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Django</span><span class="tag">Redis queue</span><span class="tag">GCP autoscaling</span></div>
+          </article>
+
+          <article class="card">
+            <h3>Warehouse &amp; Purchasing Systems</h3>
+            <div class="ctx">Distribution company · 2020 – 2021</div>
+            <dl>
+              <dt>Built</dt>
+              <dd>Barcode-based warehouse management, a purchasing forecast system, and MySQL primary-replica replication.</dd>
+              <dt>Impact</dt>
+              <dd class="impact">Shelving time −30%, DB speed +20%, 2–3 hrs/week saved.</dd>
+            </dl>
+            <div class="tags"><span class="tag">Django</span><span class="tag">MySQL</span><span class="tag">MariaDB</span><span class="tag">Docker</span></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Open-source projects: shown only when the list in the script below has entries -->
+    <section id="github" class="hidden">
+      <h2>Open source</h2>
+      <p class="section-title">On GitHub</p>
+      <div class="grid-2" id="github-list"></div>
+    </section>
+
+    <section id="experience">
+      <h2>Experience</h2>
+      <p class="section-title">Where I've worked</p>
+      <ul class="timeline">
+        <li>
+          <div class="when">Mar 2023 – Present</div>
+          <div>
+            <h3>Backend Engineer</h3>
+            <div class="co">International Integrated Systems, Inc. · Taipei</div>
+            <p>Monitoring platform for 300+ hosts, plus weather observation and earthquake data services.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">Jan 2022 – Dec 2022</div>
+          <div>
+            <h3>Backend Engineer</h3>
+            <div class="co">Algotech PTE. LTD. (Singapore) · Taipei</div>
+            <p>SaaS order management system with payment and social media integrations, hosted on GCP.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">Jun 2020 – Dec 2021</div>
+          <div>
+            <h3>Backend Engineer</h3>
+            <div class="co">Jayter Enterprise Co., Ltd. · New Taipei</div>
+            <p>Warehouse management, purchasing forecasts, and database migration and replication.</p>
+          </div>
+        </li>
+        <li>
+          <div class="when">Aug 2024 – Oct 2026</div>
+          <div>
+            <h3>M.Eng. in Computing and Technology</h3>
+            <div class="co">Arizona State University</div>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="skills">
+      <h2>Skills</h2>
+      <p class="section-title">What I work with</p>
+      <div class="skills">
+        <div class="skill-group"><h3>Backend</h3><div class="tags"><span class="tag">Python</span><span class="tag">Django</span><span class="tag">Django REST Framework</span><span class="tag">REST API design</span></div></div>
+        <div class="skill-group"><h3>Data</h3><div class="tags"><span class="tag">MySQL</span><span class="tag">MariaDB</span><span class="tag">Redis</span><span class="tag">SQLite</span><span class="tag">ETL jobs</span><span class="tag">NumPy</span><span class="tag">Matplotlib</span></div></div>
+        <div class="skill-group"><h3>DevOps &amp; Frontend</h3><div class="tags"><span class="tag">Docker</span><span class="tag">GCP</span><span class="tag">Linux</span><span class="tag">Apache</span><span class="tag">Git</span><span class="tag">JavaScript</span><span class="tag">Vue.js</span></div></div>
+      </div>
+    </section>
+
+    <section id="contact" class="contact">
+      <h2>Contact</h2>
+      <p class="section-title">Let's work together</p>
+      <p>I'm open to remote part-time and contract work. I'm based in Taiwan (UTC+8), with good overlap for Asia-Pacific teams and flexible async collaboration with US and EU teams.</p>
+      <div class="btns">
+        <a class="btn primary" href="mailto:nick88068@gmail.com">nick88068@gmail.com</a>
+        <a class="btn" href="https://linkedin.com/in/nick-lien" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>© <span id="year"></span> Lien Chiang Cheng</footer>
+
+<script>
+  // ---- Edit here -----------------------------------------------------------
+  // Your GitHub profile URL, e.g. "https://github.com/your-name". Leave "" to hide the button.
+  const GITHUB_URL = "";
+
+  // Your public projects. The "On GitHub" section stays hidden while this list is empty.
+  // Example entry:
+  // { name: "django-metrics-dashboard", url: "https://github.com/you/django-metrics-dashboard",
+  //   description: "Real-time server metrics dashboard with Django REST Framework and Redis.",
+  //   tags: ["Django", "Redis", "Vue.js"] },
+  const GITHUB_PROJECTS = [];
+  // --------------------------------------------------------------------------
+
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  if (GITHUB_URL) {
+    const btn = document.getElementById("github-btn");
+    btn.href = GITHUB_URL;
+    btn.classList.remove("hidden");
+  }
+
+  if (GITHUB_PROJECTS.length) {
+    const list = document.getElementById("github-list");
+    for (const p of GITHUB_PROJECTS) {
+      const card = document.createElement("article");
+      card.className = "card";
+      const h3 = document.createElement("h3");
+      const a = document.createElement("a");
+      a.href = p.url; a.target = "_blank"; a.rel = "noopener"; a.textContent = p.name;
+      h3.appendChild(a);
+      const desc = document.createElement("p");
+      desc.textContent = p.description || "";
+      desc.style.color = "var(--muted)";
+      const tags = document.createElement("div");
+      tags.className = "tags";
+      for (const t of p.tags || []) {
+        const s = document.createElement("span");
+        s.className = "tag"; s.textContent = t;
+        tags.appendChild(s);
+      }
+      card.append(h3, desc, tags);
+      list.appendChild(card);
+    }
+    document.getElementById("github").classList.remove("hidden");
+  }
+</script>
+</body>
+</html>
